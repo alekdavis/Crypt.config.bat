@@ -214,14 +214,20 @@ private static string GetSecureAppSetting
             String.Format("Cannot read section '{0}' from the configuration file.",
                 sectionName));
 
-    string keyValue = section[keyName] as string;
-
-    if (String.IsNullOrEmpty(keyValue))
+    string keyValue = null;
+    
+    try
+    {
+        section[keyName] as string;
+    }
+    catch (Exception ex)
+    {
         throw new Exception(
             String.Format("Cannot get value from the '{0}' property " +
                 "of the '{1}' section in the configuration file.",
-                keyName, sectionName));
-
+                keyName, sectionName), ex);        
+    }
+                    
     return keyValue;
 }
 ```
