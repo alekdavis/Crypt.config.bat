@@ -218,7 +218,7 @@ private static string GetSecureAppSetting
     
     try
     {
-        section[keyName] as string;
+        keyValue = section[keyName] as string;
     }
     catch (Exception ex)
     {
