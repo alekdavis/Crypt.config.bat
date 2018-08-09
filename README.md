@@ -124,8 +124,11 @@ a time:
 
 >*Crypt.config /? | more*
 
+## Usage
+For a detailed example of setting up encryption and using it from a C# application see [this sample](SAMPLE.md).
+
 ## Tips
-You can hard code required switch values in your copy of the Crypt.config.bat file (see the INITIALIZE RUNTIME DEFAULTS section).
+You can hard code required switch values in your copy of the Crypt.config.bat file (see the *INITIALIZE RUNTIME DEFAULTS* section of the batch file).
 
 ## Resources
 
