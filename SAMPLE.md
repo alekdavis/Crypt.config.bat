@@ -106,13 +106,14 @@ When you encrypt the sensitive configuration section, you need to specify the na
   ...
   <configProtectedData defaultProvider="sampleRsaProvider">
     <providers>
+      <remove name="sampleRsaProvider" />
       <add name="sampleRsaProvider" type="System.Configuration.RsaProtectedConfigurationProvider, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" keyContainerName="sampleRsaKey" useMachineContainer="true" />
     </providers>
   </configProtectedData>
   ...
 </configuration>
 ```
-Notice that we set *sampleRsaProvider* as a default provider.
+Notice that we set *sampleRsaProvider* as a default provider. The *remove* element is generally not needed unless your application configuration inherits the same provider from the parent application, e.g. if you your default website has the same provider as a virtual directory (or an IIS application) under it (in which case, a duplicate provider will cause your website to crash with the 500 Internal Server Error).
 
 ### Secure application settings section
 
