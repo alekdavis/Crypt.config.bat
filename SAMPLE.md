@@ -83,10 +83,10 @@ In this section, you specify how your sensitive application section is handled. 
 </configuration>
 ```
 
-Notice that we are using the `System.Configuration.AppSettingsSection` type because this type will allow us to encrypt a section defined in an external file. If you are not using an external section, you can use the `System.Configuration.NameValueSectionHandler` type:
+Notice that we are using the `System.Configuration.AppSettingsSection` type because this type will allow us to encrypt a section defined in an external file (in this case you need to add a few lines of code to retrieve sensitive application settings at run time as illustrated below). If you are not using an external section, you can use the `System.Configuration.NameValueSectionHandler` type and you can access sensitive application setings at run time by simply calling the `System.Configuration.ConfigurationManager.AppSettings[]` indexer method:
 
 ```xml
-<section name="secureAppSettings" type="System.Configuration.NameValueSectionHandler, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+<section name="secureAppSettings" type="System.Configuration.NameValueSectionHandler, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
 ```
 
 IMPORTANT: Do not use `System.Configuration.AppSettingsSection` type with the external configuration section, because it will not get encrypted.
@@ -107,7 +107,7 @@ When you encrypt the sensitive configuration section, you need to specify the na
   <configProtectedData defaultProvider="sampleRsaProvider">
     <providers>
       <remove name="sampleRsaProvider" />
-      <add name="sampleRsaProvider" type="System.Configuration.RsaProtectedConfigurationProvider, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" keyContainerName="sampleRsaKey" useMachineContainer="true" />
+      <add name="sampleRsaProvider" type="System.Configuration.RsaProtectedConfigurationProvider, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" keyContainerName="sampleRsaKey" useMachineContainer="true" />
     </providers>
   </configProtectedData>
   ...
@@ -154,7 +154,8 @@ Here are the required sections of the *app.config* file relevant to encryption:
   ...
   <configProtectedData defaultProvider="sampleRsaProvider">
     <providers>
-      <add name="sampleRsaProvider" type="System.Configuration.RsaProtectedConfigurationProvider, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" keyContainerName="sampleRsaKey" useMachineContainer="true" />
+      <remove name="sampleRsaProvider" />
+      <add name="sampleRsaProvider" type="System.Configuration.RsaProtectedConfigurationProvider, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" keyContainerName="sampleRsaKey" useMachineContainer="true" />
     </providers>
   </configProtectedData>
   ...
