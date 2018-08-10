@@ -137,3 +137,5 @@ You can hard code required switch values in your copy of the Crypt.config.bat fi
 [How to encrypt config settings on multiple machines](https://mywebanecdotes.com/2016/09/17/encrypting-credentials-in-app-config-for-multiple-machines/ "Encrypting Credentials in App.config for Multiple Machines") (also [here](https://www.c-sharpcorner.com/article/encrypting-app-config-for-multiple-machines/ "Encrypting App.config For Multiple Machines"))
 
 [How to encrypt config sections in external files](https://stackoverflow.com/questions/40650793/is-it-possible-to-encrypt-a-config-file-specified-as-a-configsource-from-web-con "Is it possible to encrypt a config file specified as a configSource from web.config?")
+
+[Working with RsaProtectedConfigurationProvider](http://austrianalex.com/rsaprotectedconfigurationprovider-not-recommended-for-children-under-5.html "RsaProtectedConfigurationProvider: Not recommended for children under 5")
