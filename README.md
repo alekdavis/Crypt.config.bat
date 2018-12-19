@@ -139,3 +139,5 @@ You can hard code required switch values in your copy of the Crypt.config.bat fi
 [How to encrypt config sections in external files](https://stackoverflow.com/questions/40650793/is-it-possible-to-encrypt-a-config-file-specified-as-a-configsource-from-web-con "Is it possible to encrypt a config file specified as a configSource from web.config?")
 
 [Working with RsaProtectedConfigurationProvider](http://austrianalex.com/rsaprotectedconfigurationprovider-not-recommended-for-children-under-5.html "RsaProtectedConfigurationProvider: Not recommended for children under 5")
+
+[RsaProtectedConfigurationProvider: Not recommended for children under 5](http://austrianalex.com/rsaprotectedconfigurationprovider-not-recommended-for-children-under-5.html "RsaProtectedConfigurationProvider: Not recommended for children under 5")
