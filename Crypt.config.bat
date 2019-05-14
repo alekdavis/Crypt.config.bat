@@ -427,7 +427,7 @@ if defined TRACE %TRACE% [proc %0 %*]
     rename "%appconfig%" web.config
 
     if not ERRORLEVEL 0 (
-        if not "%webconfigbak%"=="" (
+        if exist "%webconfigbak%" (
             call :LOGMESSAGE Renaming '%webconfigbak%' back to 'web.config'.
             rename "%webconfigbak%" web.config
 
@@ -447,14 +447,14 @@ if defined TRACE %TRACE% [proc %0 %*]
     if not ERRORLEVEL 0 (
         call :LOGERROR Please restore '%appconfig%' from 'web.config' manually.
 
-        if not "%webconfigbak%"=="" (
+        if exist "%webconfigbak%" (
             call :LOGERROR Please restore '%webconfig%' from '%webconfigbakname%' manually.
         )
 
         goto :EXIT_PROCESSAPPCONFIG
     )
 
-    if not "%webconfigbak%"=="" (
+    if exist "%webconfigbak%" (
         call :LOGMESSAGE Restoring '%webconfig%' from '%webconfigbakname%'.
         rename "%webconfigbak%" web.config
 
