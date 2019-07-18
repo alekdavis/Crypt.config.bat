@@ -10,7 +10,7 @@ rem To see usage help information, run this script with the '?' switch.
 rem
 rem For licensing, run this script with the 'license' switch.
 rem
-rem For an overview, see TBD.
+rem For an overview, see https://github.com/alekdavis/Crypt.config.bat.
 rem
 
 @if not "%ECHO%"=="" echo %ECHO%
@@ -19,9 +19,9 @@ rem
 rem Set local scope and call MAIN procedure
 setlocal & pushd >nul & set RET=
 
-set SCRIPT_VERSION=1.0.0
-set SCRIPT_YEAR=2018
-set SCRIPT_COMPANY=Alek Davis
+set SCRIPT_VERSION=1.1.0
+set SCRIPT_YEAR=2019
+set SCRIPT_COMPANY=
 set SCRIPT_AUTHOR=Alek Davis
 
 rem ------------------------------------------------------------------
@@ -85,7 +85,7 @@ set ERROR_FILE_BACKUP=6
 set ERROR_ASPNET_REGIIS=7
 
 rem Set script's path parts.
-set SCRIPTNAME=%~n0
+set SCRIPTNAME=%~n0%~x0
 set SCRIPTPATH=%~f0
 set SCRIPTDIR=%~dp0
 set SCRIPTEXT=%~x0
@@ -169,6 +169,7 @@ set /a IX=1
     if /i "%RET%"=="/q"         set quiet=1
     if /i "%RET%"=="/silent"    set quiet=1
     if /i "%RET%"=="/s"         set quiet=1
+    if /i "%RET%"=="/nologo"    set nologo=1
     if /i "%RET%"=="/print"     set print=1
     if /i "%RET%"=="/noexport"  set noexport=1
     if /i "%RET%"=="/noexp"     set noexport=1
@@ -746,6 +747,7 @@ if defined TRACE %TRACE% [proc %0 %*]
     echo Backup       = %backup%
     echo Bak          = %bak%
     echo Quiet        = %quiet%
+    echo Nologo       = %nologo%
 endlocal
 goto :EOF
 
@@ -756,9 +758,16 @@ rem
 setlocal
 if defined TRACE %TRACE% [proc %0 %*]
     if "%quiet%"=="1" goto :EXIT_VERSION
+    if "%nologo%"=="1" goto :EXIT_VERSION
 
-    echo %SCRIPTNAME% v%SCRIPT_VERSION% by %SCRIPT_AUTHOR%
-    echo Copyright (C) %SCRIPT_YEAR% %SCRIPT_COMPANY%
+	if "%SCRIPT_AUTHOR%"=="" (
+		echo %SCRIPTNAME% v%SCRIPT_VERSION%
+	) else (
+		echo %SCRIPTNAME% v%SCRIPT_VERSION% by %SCRIPT_AUTHOR%
+	)
+
+    if not "%SCRIPT_COMPANY%"=="" echo Copyright (C) %SCRIPT_YEAR% %SCRIPT_COMPANY%
+
     echo.
 
 :EXIT_VERSION
@@ -918,6 +927,10 @@ if defined TRACE %TRACE% [proc %0 %*]
     echo   When this switch is set, informational messages non-essential for
     echo   the intended operaytion will not be displayed. Error messages may
     echo   be displayed regardless.
+    echo.
+    echo /nologo
+    echo   When this switch is set, the script version and copyright info will
+	echo   not be displayed.
     echo ______________________________________________________________________
     echo.
     echo  EXAMPLES
